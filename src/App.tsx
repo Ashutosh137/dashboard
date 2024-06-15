@@ -55,7 +55,7 @@ function App() {
         <option value="30">30</option>
         <option value="100">all</option>
       </select>
-      <EnergyChart data={filtereddata.data?.slice(0, pageperdata)} />;
+      <EnergyChart data={filtereddata?.slice(0, pageperdata)} />;
     </>
   );
 }
