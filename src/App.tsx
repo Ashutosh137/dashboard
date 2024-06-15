@@ -30,7 +30,6 @@ function App() {
     setfiltereddata(count?.data?.filter((res) => res.sector === filter));
   }, [filter]);
 
-
   return (
     <>
       <select

@@ -2,7 +2,6 @@ import { Bar } from "react-chartjs-2";
 import "chart.js/auto";
 
 const EnergyChart = ({ data }) => {
-  // Extract data for the chart
   const labels = data?.map((item) =>
     new Date(item.published).toLocaleDateString()
   );
