@@ -11,9 +11,12 @@ function App() {
 
   useEffect(() => {
     const data = async () => {
-      const datasize = await fetch("https://online-1-5nf6.onrender.com/data/dashboard", {
-        cache: "force-cache",
-      }).then((res) => res.json());
+      const datasize = await fetch(
+        "https://online-1-5nf6.onrender.com/data/dashboard",
+        {
+          cache: "force-cache",
+        }
+      ).then((res) => res.json());
       setCount(datasize.data.data);
     };
     data();
@@ -23,15 +26,10 @@ function App() {
   }, [count]);
 
   useEffect(() => {
-    console.log(count)
+    console.log(count);
     setfiltereddata(count?.data?.filter((res) => res.sector === filter));
   }, [filter]);
 
-  // const sectors = count.data.reduce((item , daa)=>{if(!daa.includes(item){
-  //   daa.push(item)
-  // })})
-
-  // console.log(count?.data?.filter((res) => res.sector === "Energy"));
 
   return (
     <>
