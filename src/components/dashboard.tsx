@@ -1,7 +1,20 @@
+import React, { FC } from "react";
 import { Bar } from "react-chartjs-2";
 import "chart.js/auto";
 
-const EnergyChart = ({ data }) => {
+// Define the type for the data items
+interface DataItem {
+  published: string;
+  intensity: number;
+  relevance: number;
+}
+
+// Define the props type
+interface EnergyChartProps {
+  data: DataItem[];
+}
+
+const EnergyChart: FC<EnergyChartProps> = ({ data }) => {
   const labels = data?.map((item) =>
     new Date(item.published).toLocaleDateString()
   );
@@ -19,10 +32,10 @@ const EnergyChart = ({ data }) => {
         borderWidth: 1,
       },
       {
-        label: "relevance",
+        label: "Relevance",
         data: relevance,
-        backgroundColor: "rgba(750, 192, 192, 0.2)",
-        borderColor: "rgba(751, 192, 192, 1)",
+        backgroundColor: "rgba(192, 75, 192, 0.2)",
+        borderColor: "rgba(192, 75, 192, 1)",
         borderWidth: 1,
       },
     ],
