@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import EnergyChart from "./components/dashboard";
+import EnergyChart from "./components/dashbaord";
 
 function App() {
   const [count, setCount] = useState([]);
   const [filter, setfilter] = useState("All");
   const [filtereddata, setfiltereddata] = useState(count);
+
+  const [sectorslist, setsectorslist] = useState([]);
 
   const [pageperdata, setpageperdata] = useState(100);
 
@@ -23,11 +25,19 @@ function App() {
   }, []);
   useEffect(() => {
     setfiltereddata(count);
+    console.log(count)
+    setsectorslist(Array.from(new Set(count.map((item) => item.sector))))
   }, [count]);
 
+  console.log(sectorslist)
+
   useEffect(() => {
-    console.log(count);
-    setfiltereddata(count?.data?.filter((res) => res.sector === filter));
+   
+    if (filter === "all") {
+      setfiltereddata(count);
+      } else {
+
+    setfiltereddata(count?.filter((res) => res.sector === filter));}
   }, [filter]);
 
   return (
@@ -38,8 +48,14 @@ function App() {
           setfilter(e.target.value);
         }}
       >
-        <option value="">all</option>
-        <option value="Energy">energy</option>
+        {sectorslist?.map((item, index) => {
+          return (
+            <option key={index} value={item}>
+              {item}
+            </option>
+          );
+        })}
+        <option value="all">all</option>
       </select>
       <select
         value={pageperdata}
@@ -52,7 +68,7 @@ function App() {
         <option value="30">30</option>
         <option value="100">all</option>
       </select>
-      <EnergyChart data={filtereddata?.slice(0, pageperdata)} />;
+      <EnergyChart data={filtereddata?.slice(0, pageperdata)} />
     </>
   );
 }

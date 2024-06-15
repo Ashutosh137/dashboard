@@ -1,20 +1,9 @@
-import React, { FC } from "react";
+import React from "react";
 import { Bar } from "react-chartjs-2";
 import "chart.js/auto";
 
-// Define the type for the data items
-interface DataItem {
-  published: string;
-  intensity: number;
-  relevance: number;
-}
-
-// Define the props type
-interface EnergyChartProps {
-  data: DataItem[];
-}
-
-const EnergyChart: FC<EnergyChartProps> = ({ data }) => {
+const EnergyChart = ({ data }) => {
+  // Extract data for the chart
   const labels = data?.map((item) =>
     new Date(item.published).toLocaleDateString()
   );
