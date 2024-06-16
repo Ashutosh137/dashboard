@@ -9,6 +9,7 @@ const EnergyChart = ({ data }) => {
   );
   const intensities = data?.map((item) => item.intensity);
   const relevance = data?.map((item) => item.relevance);
+  const likelihood = data?.map((item) => item.likelihood);
 
   const chartData = {
     labels: labels,
@@ -25,6 +26,13 @@ const EnergyChart = ({ data }) => {
         data: relevance,
         backgroundColor: "rgba(192, 75, 192, 0.2)",
         borderColor: "rgba(192, 75, 192, 1)",
+        borderWidth: 1,
+      },
+      {
+        label: "likelihood",
+        data: likelihood,
+        backgroundColor: "rgba(122, 175, 2)",
+        borderColor: "rgba(92,75, 92, 1)",
         borderWidth: 1,
       },
     ],
