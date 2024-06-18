@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import EnergyChart from "./components/dashbaord";
 import Datagrid from "./components/datagrid";
+import { Menu, MenuItem, Select, TextField } from "@mui/material";
 
 function App() {
   const [count, setCount] = useState([]);
@@ -74,72 +75,107 @@ function App() {
 
   return (
     <>
-      {/* <Menu id=""  keepMounted open={Boolean()}>
-    <MenuItem >ncvxcv</MenuItem>
-    </Menu> */}
-      <select
+      <Select
+        label="sector"
+        sx={{ color: "white" }}
         name="sector"
+        InputLabelProps={{
+          sx: {
+            color: "white", // Change label color
+          },
+        }}
         value={filters.sector}
         onChange={handleFilterChange}
       >
         {sectorsList.map((item, index) => (
-          <option key={index} value={item}>
+          <MenuItem key={index} color="white" value={item}>
             {item}
-          </option>
+          </MenuItem>
         ))}
-      </select>
+      </Select>
 
-      <select
+      <Select
+        label="source"
         name="source"
+        InputLabelProps={{
+          sx: {
+            color: "white", // Change label color
+          },
+        }}
+        sx={{ color: "white" }}
         value={filters.source}
         onChange={handleFilterChange}
       >
         {sourceList.map((item, index) => (
-          <option key={index} value={item}>
+          <MenuItem key={index} value={item}>
             {item}
-          </option>
+          </MenuItem>
         ))}
-      </select>
+      </Select>
 
-      <select
+      <Select
+        label="pestle"
         name="pestle"
+        InputLabelProps={{
+          sx: {
+            color: "white", // Change label color
+          },
+        }}
         value={filters.pestle}
+        sx={{ color: "white" }}
         onChange={handleFilterChange}
       >
         {pestleList.map((item, index) => (
-          <option key={index} value={item}>
+          <MenuItem key={index} value={item}>
             {item}
-          </option>
+          </MenuItem>
         ))}
-      </select>
+      </Select>
 
-      <select name="topic" value={filters.topic} onChange={handleFilterChange}>
+      <Select
+        name="topic"
+        label="topic"
+        InputLabelProps={{
+          sx: {
+            color: "red",
+          },
+        }}
+        value={filters.topic}
+        sx={{ color: "white" }}
+        onChange={handleFilterChange}
+      >
         {topicList.map((item, index) => (
-          <option key={index} value={item}>
+          <MenuItem key={index} value={item}>
             {item}
-          </option>
+          </MenuItem>
         ))}
-      </select>
+      </Select>
 
-      <select
+      <Select
         value={pageperdata}
+        sx={{ color: "white" }}
+        InputLabelProps={{
+          sx: {
+            color: "white",
+          },
+        }}
         onChange={(e) => {
           setpageperdata(e.target.value);
         }}
       >
-        {Array.from({ length: 10 }, (_, index) =>
-          Math.floor((index + 1) * (filteredData.length / 10))
+        {Array.from({ length: 5 }, (_, index) =>
+          Math.floor((index + 1) * (filteredData.length / 5))
         ).map((item, index) => {
           return (
-            <option key={index} value={item}>
+            <MenuItem key={index} value={item}>
               {item}
-            </option>
+            </MenuItem>
           );
         })}
-      </select>
+      </Select>
 
       <EnergyChart data={filteredData.slice(0, pageperdata)} />
-      <Datagrid/>
+      <Datagrid rows={count.length > 0 && count} />
     </>
   );
 }

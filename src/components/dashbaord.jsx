@@ -1,4 +1,3 @@
-import React from "react";
 import { Bar } from "react-chartjs-2";
 import "chart.js/auto";
 
@@ -47,7 +46,7 @@ const EnergyChart = ({ data }) => {
   };
 
   return (
-    <div style={{ width: "80vw", height: "1200px", margin: "auto" }}>
+    <div style={{ width: "80vw", margin: "auto" }}>
       <Bar data={chartData} options={options} />
     </div>
   );
